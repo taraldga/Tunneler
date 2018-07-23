@@ -19,6 +19,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
                     onSearch={value => this.onSearch(value)}
                     dataSource={this.props.tunnelNames}
                     className="searchContainer"
+                    filterOption={false}
                 />
             </div>
         );
