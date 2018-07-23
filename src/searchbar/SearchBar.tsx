@@ -11,7 +11,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
     constructor(props) {
         super(props);
     }
-    
+
     public render() {
         
         return (
