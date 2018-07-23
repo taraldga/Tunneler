@@ -13,7 +13,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
     }
 
     public render() {
-        
+        const dataSource = this.props.tunnelNames ? this.props.tunnelNames : [];
         return (
             <div className={'searchContainer'}>
                 <h4>Søk etter tunneler</h4>
@@ -23,6 +23,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
                     dataSource={this.props.tunnelNames}
                     className="searchContainer"
                     filterOption={false}
+                    
                 />
             </div>
         );
