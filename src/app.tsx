@@ -34,12 +34,12 @@ class App extends React.Component<{}, IAppState> {
     public render() {
         if(!this.state){ return null }
         console.log(this.state)
-        let currentTunnelNames = this.state && this.state.currentSearch ? this.state.currentSearch.map(tunnel => tunnel.name) : []; 
         let currentTunnelSearch = this.state && this.state.currentSearch ? this.state.currentSearch : []; 
+        let searchResult = this.state && this.state.currentSearch ? <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> : []; 
         return (
             <div className="appContainer">
-                <SearchBar tunnelNames={currentTunnelNames} onSearch={(newSearchVal) => this.handleSearch(newSearchVal)} />
-                {/* <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> */}
+                <SearchBar tunnelNames={['currentTunnelNames']} onSearch={(newSearchVal) => this.handleSearch(newSearchVal)} />
+                {searchResult}
             </div>
         );
     }

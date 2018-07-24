@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card } from 'antd';
 
 import './searchresult.scss';
-const { Meta } = Card;
+const Meta  = Card.Meta;
 
 interface ISearchResultProps {
     items: any[];
