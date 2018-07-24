@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { Card } from 'antd';
 
 import './searchresult.scss';
@@ -14,15 +14,15 @@ export default class SearchResult extends React.Component<ISearchResultProps, {}
     }
 
     public render() {
-        let cards = this.props.items.map(tunnel => {
+        let cards = this.props.items.map((tunnel, idx) => {
             let image = this.imageExists(tunnel.name) ? <img src={tunnel.imageUrl} alt={tunnel.name}/> : <div dangerouslySetInnerHTML={{__html:this.getTempTunnel()} } />;
             return (
                 <Card
                     hoverable={true}
                     className={'cardContainer'}
                     cover={image}
+                    key={`${tunnel.name}-${idx}`}
                 >
-
                 </Card>
             )
         });
