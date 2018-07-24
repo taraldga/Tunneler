@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Card } from 'antd';
 
 import './searchresult.scss';
-const Meta  = Card.Meta;
 
 interface ISearchResultProps {
     items: any[];
@@ -23,10 +22,7 @@ export default class SearchResult extends React.Component<ISearchResultProps, {}
                     className={'cardContainer'}
                     cover={image}
                 >
-                    <Meta 
-                        title={tunnel.name}
-                        description={`${tunnel.length}m`}
-                    />
+
                 </Card>
             )
         });
