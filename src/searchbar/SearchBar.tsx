@@ -1,5 +1,6 @@
 import * as React from "react";
-import { AutoComplete } from 'antd';
+import { Input } from 'antd';
+
 import './searchbar.scss';
 
 interface ISearchBarProps {
@@ -7,7 +8,7 @@ interface ISearchBarProps {
     tunnelNames: string[];
 }
 
-const Option = AutoComplete.Option;
+const Search = Input.Search;
 
 export default class SearchBar extends React.Component<ISearchBarProps, {}> {
     constructor(props) {
@@ -15,22 +16,15 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
     }
 
     public render() {
-        const dataSource = this.props.tunnelNames ? this.props.tunnelNames : [];
-        const children = dataSource.map((tunnel) => {
-            return <Option key={tunnel}>{tunnel}</Option>;
-          });
+
         return (
             <div className={'searchContainer'}>
                 <h4>Søk etter tunneler</h4>
-                <AutoComplete
+                <Search
                     placeholder="Skriv inn et tunnelnavn..."
-                    onSearch={value => this.onSearch(value)}
                     className="searchContainer"
-                    filterOption={false}
-                    
-                >
-                {children}
-                </AutoComplete>
+                    onChange= {event => this.onSearch(event.target.value)}
+                />
             </div>
         );
     }
