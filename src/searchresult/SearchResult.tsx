@@ -9,7 +9,7 @@ interface ISearchResultProps {
     tunnelsWithImages: string[];
 }
 
-export default class SearchBar extends React.Component<ISearchResultProps, {}> {
+export default class SearchResult extends React.Component<ISearchResultProps, {}> {
     constructor(props) {
         super(props);
     }
