@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card } from 'antd';
 
+const { Meta } = Card;
 import './searchresult.scss';
 
 interface ISearchResultProps {
@@ -21,8 +22,10 @@ export default class SearchResult extends React.Component<ISearchResultProps, {}
                     hoverable={true}
                     className={'cardContainer'}
                     cover={image}
-                    key={`${tunnel.name}-${idx}`}
-                >
+                    key={`${tunnel.name}-${idx}`}>
+                        <Meta
+                            title={tunnel.name}
+                            description={`${tunnel.length}m`} />
                 </Card>
             )
         });
