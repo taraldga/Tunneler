@@ -35,7 +35,7 @@ class App extends React.Component<{}, IAppState> {
         if(!this.state){ return null }
         console.log(this.state)
         let currentTunnelSearch = this.state && this.state.currentSearch ? this.state.currentSearch : []; 
-        let searchResult = this.state && this.state.currentSearch ? <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> : []; 
+        let searchResult = this.state && this.state.currentSearch ? <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> : <div />; 
         return (
             <div className="appContainer">
                 <SearchBar tunnelNames={['currentTunnelNames']} onSearch={(newSearchVal) => this.handleSearch(newSearchVal)} />
