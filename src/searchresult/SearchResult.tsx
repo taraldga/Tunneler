@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Card } from 'antd';
-import {ITunnel} from '../app';
 
 import './searchresult.scss';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 const { Meta } = Card;
 
 interface ISearchResultProps {
-    items: ITunnel[];
+    items: any[];
     tunnelsWithImages: string[];
 }
 
