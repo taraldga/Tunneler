@@ -39,7 +39,7 @@ class App extends React.Component<{}, IAppState> {
         return (
             <div className="appContainer">
                 <SearchBar tunnelNames={currentTunnelNames} onSearch={(newSearchVal) => this.handleSearch(newSearchVal)} />
-                <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/>
+                {/* <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> */}
             </div>
         );
     }
@@ -47,7 +47,7 @@ class App extends React.Component<{}, IAppState> {
     public handleSearch(newSearchVal) {
         let newSearchResults
         console.log(newSearchResults);
-        if(newSearchVal.length < 3) {
+        if(newSearchVal.length < 2) {
             newSearchResults = [];
         } else {
             newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );

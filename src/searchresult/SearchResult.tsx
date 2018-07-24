@@ -38,8 +38,6 @@ export default class SearchBar extends React.Component<ISearchResultProps, {}> {
     }
 
     private imageExists(tunnelName: string){
-        console.log(this.props.tunnelsWithImages);
-        console.log(tunnelName)
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
     }
 
