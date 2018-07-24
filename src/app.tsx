@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SearchBar from './searchbar/SearchBar';
-import SearchResult from './searchresult/searchresult';
+import SearchResult from './searchresult/SearchResult';
 import './App.scss';
 
 export interface ITunnel {
