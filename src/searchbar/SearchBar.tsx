@@ -7,6 +7,8 @@ interface ISearchBarProps {
     tunnelNames: string[];
 }
 
+const Option = AutoComplete.Option;
+
 export default class SearchBar extends React.Component<ISearchBarProps, {}> {
     constructor(props) {
         super(props);
@@ -14,17 +16,21 @@ export default class SearchBar extends React.Component<ISearchBarProps, {}> {
 
     public render() {
         const dataSource = this.props.tunnelNames ? this.props.tunnelNames : [];
+        const children = dataSource.map((tunnel) => {
+            return <Option key={tunnel}>{tunnel}</Option>;
+          });
         return (
             <div className={'searchContainer'}>
                 <h4>Søk etter tunneler</h4>
                 <AutoComplete
                     placeholder="Skriv inn et tunnelnavn..."
                     onSearch={value => this.onSearch(value)}
-                    dataSource={this.props.tunnelNames}
                     className="searchContainer"
                     filterOption={false}
                     
-                />
+                >
+                {children}
+                </AutoComplete>
             </div>
         );
     }
