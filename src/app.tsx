@@ -53,9 +53,12 @@ class App extends React.Component<{}, IAppState> {
         }
         return (
             <div className="appContainer">
-                <SearchBar tunnelNames={this.state.allTunnels.map(tunnel => {return { label: tunnel.name} }) }
-                           onSearch={(newSearchVal) => this.handleSearch(newSearchVal)}
-                           currentSearch={this.state.currentSearchString}/>
+                <div className='banner'>
+                    <h1>Tuneller</h1>
+                    <SearchBar tunnelNames={this.state.allTunnels.map(tunnel => {return { label: tunnel.name} }) }       
+                            onSearch={(newSearchVal) => this.handleSearch(newSearchVal)}
+                            currentSearch={this.state.currentSearchString}/>
+                </div>
                 {resultPane}
             </div>
         );

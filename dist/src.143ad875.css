@@ -1,9 +1,23 @@
+.banner {
+  height: 300px;
+  background-image: linear-gradient(to bottom right, #0198E1, #82CFFD);
+  color: white; }
+  .banner > h1 {
+    color: white;
+    padding-top: 50px; }
+
 .searchContainer {
   width: 400px;
   margin-top: 60px;
   display: block;
   margin-left: auto;
   margin-right: auto; }
+  .searchContainer .input {
+    width: 350px;
+    color: #fff; }
+  .searchContainer .react-autosuggest__input {
+    border: solid 1px #CCCCCC;
+    border-radius: 5px; }
 .searchResultContainer {
   display: flex;
   flex-wrap: wrap;

@@ -35,7 +35,6 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
         if ( !this.state ) { return <div/>}
         return (
             <div className={'searchContainer'}>
-                <h4>Søk etter tunneler</h4>
                 <AutoSuggest 
                     renderInputComponent={this.renderInput}
                     suggestions= {this.state.suggestions}
@@ -50,7 +49,8 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
                         placeholder: 'Skriv inn et tunnelnavn',
                         value: this.state.value,
                         onChange: this.onSearch,
-                        onKeyPress: this.handleSearch
+                        onKeyPress: this.handleSearch,
+                        disableUnderline:true
                         
                     }}
                 /> 
@@ -65,7 +65,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
             InputProps={{
                 startAdornment:(
                     <InputAdornment position="start" >
-                                <Search />
+                                <Search classes={{colorPrimary: '#fff'}} />
                             </InputAdornment>
                         ),
               inputRef: ref,
