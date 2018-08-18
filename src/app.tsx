@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SearchBar from './searchbar/SearchBar';
 import SearchResult from './searchresult/SearchResult';
+import TunnelDisplay from './tunneldisplay/TunnelDisplay';
 import './App.scss';
 
 export interface ITunnel {
@@ -18,6 +19,7 @@ interface IAppState {
     selectedTunnel: ITunnel;
     tunnelNames: string[];
     tunnelsWithImage: string[];
+    currentSearchString: string;
 }
 
 class App extends React.Component<{}, IAppState> {
@@ -27,33 +29,49 @@ class App extends React.Component<{}, IAppState> {
         const tunnelsWithImage = require('./Assets/tunnelswithimage.json');
         this.setState({
             allTunnels: tunnelData,
-            tunnelsWithImage: tunnelsWithImage
+            tunnelsWithImage: tunnelsWithImage,
+            currentSearchString: ""
         });
     }
 
     public render() {
         if(!this.state){ return null }
-        console.log(this.state)
-        let currentTunnelSearch = this.state && this.state.currentSearch ? this.state.currentSearch : []; 
-        let searchResult = this.state && this.state.currentSearch ? <SearchResult items={currentTunnelSearch} tunnelsWithImages={this.state.tunnelsWithImage}/> : <div />; 
+
+        let currentTunnelSearch = this.state && this.state.currentSearch ? this.state.currentSearch : []
+        let resultPane;
+        if(currentTunnelSearch.length === 1) {
+            resultPane = <TunnelDisplay
+                            tunnel={currentTunnelSearch[0]}
+                            tunnelsWithImages={this.state.tunnelsWithImage}/>;
+        } else {
+            resultPane = this.state && this.state.currentSearch ?
+                <SearchResult 
+                    items={currentTunnelSearch}
+                    tunnelsWithImages={this.state.tunnelsWithImage}
+                    updateSearchFunction={(newSearchVal) => this.handleSearch(newSearchVal)}/> :   
+            <div/>;
+        }
         return (
             <div className="appContainer">
-                <SearchBar tunnelNames={['currentTunnelNames']} onSearch={(newSearchVal) => this.handleSearch(newSearchVal)} />
-                {searchResult}
+                <SearchBar tunnelNames={this.state.allTunnels.map(tunnel => {return { label: tunnel.name} }) }
+                           onSearch={(newSearchVal) => this.handleSearch(newSearchVal)}
+                           currentSearch={this.state.currentSearchString}/>
+                {resultPane}
             </div>
         );
     }
 
-    public handleSearch(newSearchVal) {
-        let newSearchResults
-        console.log(newSearchResults);
-        if(newSearchVal.length < 2) {
+    public handleSearch(newSearchVal: string) {
+        console.log(newSearchVal);
+        let newSearchResults;
+        if(newSearchVal.length < 3) {
             newSearchResults = [];
         } else {
             newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );
         }
         this.setState({
             currentSearch: newSearchResults,
+            currentSearchString: newSearchVal,
         });
     }
 }

@@ -20,7 +20,7 @@
 }
 
 
-$animationDelay: 1;
+$animationDelay: 0.5;
 @for $i from 1 through 15 {
 	.searchResultContainer div:nth-of-type(#{$i}) {
 		animation-delay: #{0.3+($i)/30}s;

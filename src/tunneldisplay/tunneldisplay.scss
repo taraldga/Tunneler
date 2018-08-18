@@ -1,0 +1,33 @@
+.tunnelDisplay {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > table {
+    margin: 10px 10px 10px 10px;
+    width: 600px;
+    align-self: center;
+    > tbody {
+      padding: 5px;
+      .tunnelInfoLabel {
+        font-weight: bold;
+      }
+      td {
+        width: 280px;
+        font-size: 1.5em;
+        text-align: start;
+      }
+    }
+  }
+  > img, div {
+    width: 600px;
+    margin: 20px;
+    align-self: center;
+  }
+}
+
+
+.tunnelDisplayImage {
+
+}

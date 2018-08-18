@@ -7,6 +7,7 @@ import './searchresult.scss';
 interface ISearchResultProps {
     items: any[];
     tunnelsWithImages: string[];
+    updateSearchFunction: Function;
 }
 
 export default class SearchResult extends React.Component<ISearchResultProps, {}> {
@@ -22,7 +23,8 @@ export default class SearchResult extends React.Component<ISearchResultProps, {}
                     hoverable={true}
                     className={'cardContainer'}
                     cover={image}
-                    key={`${tunnel.name}-${idx}`}>
+                    key={`${tunnel.name}-${idx}`}
+                    onClick={event => this._onSearch(tunnel.name)}>
                         <Meta
                             title={tunnel.name}
                             description={`${tunnel.length}m`} />
@@ -36,6 +38,10 @@ export default class SearchResult extends React.Component<ISearchResultProps, {}
         );
     }
 
+    private _onSearch(newSearch: string) {
+        console.log(newSearch);
+        this.props.updateSearchFunction(newSearch);
+    }
     private imageExists(tunnelName: string){
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
     }
