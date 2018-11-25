@@ -64,13 +64,15 @@ export default class SearchResult extends React.Component<ISearchResultProps, IS
     }
 
     private _onChangePage = (selectedItem) => {
-        console.log(selectedItem);
         this.setState({
             currentPage: selectedItem.selected
         });
     }
 
     private imageExists(tunnelName: string){
+        console.log(tunnelName.toLocaleLowerCase());
+        console.log(this.props.tunnelsWithImages);
+        console.log(this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()))
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
     }
 
