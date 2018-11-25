@@ -1,52 +1,84 @@
 import * as React from "react";
-import { Card } from 'antd';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import TablePagination from '@material-ui/core/TablePagination';
 
-const { Meta } = Card;
+
+import ReactPaginate from 'react-paginate';
+
 import './searchresult.scss';
+import { ITunnel } from "../app";
 
 interface ISearchResultProps {
     items: any[];
     tunnelsWithImages: string[];
     updateSearchFunction: Function;
+
+}
+interface ISearchResultState {
+    currentPage: number;
 }
 
-export default class SearchResult extends React.Component<ISearchResultProps, {}> {
+export default class SearchResult extends React.Component<ISearchResultProps, ISearchResultState> {
     constructor(props) {
         super(props);
+        this.state = {
+            currentPage: 1
+        }
     }
 
     public render() {
-        let cards = this.props.items.map((tunnel, idx) => {
-            let image = this.imageExists(tunnel.name) ? <img src={tunnel.imageUrl} alt={tunnel.name}/> : <div dangerouslySetInnerHTML={{__html:this.getTempTunnel()} } />;
+        const startIndex = ( this.state.currentPage - 1 ) * 9;
+        const endIndex = this.state.currentPage * 9;
+        let cards = this.props.items.slice(startIndex, endIndex).map((tunnel:ITunnel, idx) => {
+            let image = this.imageExists(tunnel.name) ? <img src={tunnel.imageUrl} alt={tunnel.name}/> : <div dangerouslySetInnerHTML={{__html:this.getTempTunnelImage()} } />;
             return (
-                <Card
-                    hoverable={true}
-                    className={'cardContainer'}
-                    cover={image}
-                    key={`${tunnel.name}-${idx}`}
-                    onClick={event => this._onSearch(tunnel.name)}>
-                        <Meta
-                            title={tunnel.name}
-                            description={`${tunnel.length}m`} />
+                <Card className={'cardContainer'} onClick={() => this._onSearch(tunnel.name)} >
+                    <CardMedia>{image}</CardMedia>
+                    <CardContent>
+                        <Typography gutterBottom variant="headline" component="h2" >{tunnel.name}</Typography>
+                    </CardContent>
                 </Card>
             )
         });
         return (
             <div className={'searchResultContainer'}>
-                {cards}
+                <div className="searchResults">
+                    {cards}
+                </div>
+                <ReactPaginate 
+                    nextLabel="Neste side" 
+                    previousLabel = "Forrige side"   
+                    breakLabel="..."
+                    breakClassName="break-me"
+                    pageCount={this.props.items.length/9}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this._onChangePage}
+                    containerClassName={'pagination'}
+                />
             </div>
         );
     }
 
     private _onSearch(newSearch: string) {
-        console.log(newSearch);
         this.props.updateSearchFunction(newSearch);
     }
+
+    private _onChangePage = (selectedItem) => {
+        console.log(selectedItem);
+        this.setState({
+            currentPage: selectedItem.selected
+        });
+    }
+
     private imageExists(tunnelName: string){
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
     }
 
-    private getTempTunnel() {
+    private getTempTunnelImage() {
         return (
             `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1280 800" version="1.1" xml:space="preserve" style="margin-top: 5px;fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                 <g id="ic_subway_24px" transform="matrix(39.9118,0,0,39.9118,161.059,-79.2353)">

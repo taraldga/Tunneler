@@ -20,18 +20,26 @@ interface IAppState {
     tunnelNames: string[];
     tunnelsWithImage: string[];
     currentSearchString: string;
+    previousSearchString?: string;
 }
 
 class App extends React.Component<{}, IAppState> {
 
     public componentDidMount() {
-        const tunnelData = require('./Assets/tunnels.json');
+        const tunnelData: ITunnel[] = (require('./Assets/tunnels.json') as ITunnel[]).sort((a, b) => { 
+            if(a.name < b.name) { return -1; }
+            if(a.name > b.name) { return 1; }
+            return 0; 
+        });
         const tunnelsWithImage = require('./Assets/tunnelswithimage.json');
         this.setState({
             allTunnels: tunnelData,
+            currentSearch: tunnelData,
             tunnelsWithImage: tunnelsWithImage,
             currentSearchString: ""
         });
+        this.closeView = this.closeView.bind(this);
+        this.backButtonClicked = this.backButtonClicked.bind(this);
     }
 
     public render() {
@@ -42,7 +50,9 @@ class App extends React.Component<{}, IAppState> {
         if(currentTunnelSearch.length === 1) {
             resultPane = <TunnelDisplay
                             tunnel={currentTunnelSearch[0]}
-                            tunnelsWithImages={this.state.tunnelsWithImage}/>;
+                            tunnelsWithImages={this.state.tunnelsWithImage}
+                            onBackButtonClicked={this.backButtonClicked} 
+                            onCloseButtonClicked={this.closeView}/>;
         } else {
             resultPane = this.state && this.state.currentSearch ?
                 <SearchResult 
@@ -65,17 +75,20 @@ class App extends React.Component<{}, IAppState> {
     }
 
     public handleSearch(newSearchVal: string) {
-        console.log(newSearchVal);
-        let newSearchResults;
-        if(newSearchVal.length < 3) {
-            newSearchResults = [];
-        } else {
-            newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );
-        }
+        let newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );
         this.setState({
             currentSearch: newSearchResults,
             currentSearchString: newSearchVal,
+            previousSearchString: this.state.currentSearchString
         });
+    }
+
+    public closeView = () => {
+        this.handleSearch("");
+    }
+
+    public backButtonClicked = () =>  {
+        this.handleSearch(this.state.previousSearchString);
     }
 }
 

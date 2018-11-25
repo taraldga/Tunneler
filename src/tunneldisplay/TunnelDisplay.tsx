@@ -1,10 +1,15 @@
 import * as React from "react";
 import {ITunnel} from '../app';
 import './tunneldisplay.scss';
+import Close from '@material-ui/icons/Close';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+
 
 interface ITunnelDisplayProps {
     tunnel: ITunnel;
     tunnelsWithImages: string[];
+    onBackButtonClicked: any;
+    onCloseButtonClicked: any;
 }
 
 
@@ -18,6 +23,10 @@ export default class TunnelDisplay extends React.Component<ITunnelDisplayProps, 
         const image = this.imageExists(tunnel.name) ? <img src={tunnel.imageUrl} alt={tunnel.name}/> : <div dangerouslySetInnerHTML={{__html:this.getTempTunnel()} } />;
         return (
             <div className='tunnelDisplay'>
+                <div className="navButtonRow">      
+                    <a className="backButton" onClick={this.props.onBackButtonClicked}><ArrowBack className="arrowBack"  /><span>Tilbake</span></a>
+                    <a className="closeButton" onClick={this.props.onCloseButtonClicked} ><Close className="close" /><span>Lukk</span></a>
+                </div>
                 <h1>{tunnel.name}</h1>
                 {image}
                 <table className='tunnelDisplayTable'>
