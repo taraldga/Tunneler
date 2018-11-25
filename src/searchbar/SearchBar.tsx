@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment  from "@material-ui/core/InputAdornment";
 import Search from '@material-ui/icons/Search';
 import './searchbar.scss';
-import createHistory from 'history/createBrowserHistory'
 
 
 
@@ -20,7 +19,6 @@ interface ISearchBarState {
 export default class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     constructor(props) {
         super(props);
-        const history = createHistory();
         
         this.state = {
             suggestions: props.tunnelNames,
@@ -38,8 +36,8 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
                     onChange={(e) => this.onSearch(e)}
                     InputProps={{
                         startAdornment: (
-                            <InputAdornment position='start'>
-                                <Search />
+                            <InputAdornment position="start">
+                                <Search className="searchIcon" />
                             </InputAdornment>
                         ),
                     }} 
