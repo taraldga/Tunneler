@@ -1,15 +1,20 @@
 .banner {
-    height: 300px;
-    background-image: linear-gradient(to bottom right, #0198E1, #82CFFD);
+    height: 200px;
+    background-image: linear-gradient(to bottom right, #000428, #004e92);
     color: white;
     >h1 {
         color: white;
         padding-top: 50px;
+        margin-top: 0;
     }
 }
 
 .searchIcon {
     color: #fff;
+}
+.removeTextIcon {
+    color: #fff;
+    border:none;
 }
 .searchContainer {
     width: 400px;
@@ -17,12 +22,16 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    div:last-child {
+    > div {
         border: solid 1px #fff;
         border-radius: 3px;
     }
     input {
         width: 350px;
         color: #fff;
+        &::after {
+            content: none;
+            display: none;
+        }
     }
 }

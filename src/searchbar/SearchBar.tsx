@@ -2,7 +2,9 @@ import * as React from "react";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment  from "@material-ui/core/InputAdornment";
 import Search from '@material-ui/icons/Search';
+import Close from '@material-ui/icons/Close';
 import './searchbar.scss';
+
 
 
 
@@ -34,19 +36,30 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
                     value={this.props.currentSearch} 
                     className={'searchContainer'} 
                     onChange={(e) => this.onSearch(e)}
+                    inputProps={{
+                        className: 'input'
+                    }}
                     InputProps={{
+                        placeholder:"Skriv inn tunell her",
+                        disableUnderline: true,
                         startAdornment: (
                             <InputAdornment position="start">
                                 <Search className="searchIcon" />
                             </InputAdornment>
                         ),
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <Close className='removeTextIcon' onClick={(e) => this.onSearch(e,"")}/>
+                            </InputAdornment>
+                        )
                     }} 
                 />
             </div>
         );
     }
     
-      private onSearch = (e) => {
-        this.props.onSearch(e.target.value);
+      private onSearch = (e, newVal?:string) => {
+        let _newVal = newVal !== undefined ? newVal : e.target.value;
+        this.props.onSearch(_newVal);
       };
 }

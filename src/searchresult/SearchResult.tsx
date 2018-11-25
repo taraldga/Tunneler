@@ -1,11 +1,7 @@
 import * as React from "react";
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import TablePagination from '@material-ui/core/TablePagination';
-
-
 import ReactPaginate from 'react-paginate';
 
 import './searchresult.scss';
@@ -25,18 +21,18 @@ export default class SearchResult extends React.Component<ISearchResultProps, IS
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 1
+            currentPage: 0
         }
     }
 
     public render() {
-        const startIndex = ( this.state.currentPage - 1 ) * 9;
-        const endIndex = this.state.currentPage * 9;
+        const startIndex = ( this.state.currentPage ) * 9;
+        const endIndex = (this.state.currentPage + 1) * 9;
         let cards = this.props.items.slice(startIndex, endIndex).map((tunnel:ITunnel, idx) => {
             let image = this.imageExists(tunnel.name) ? <img src={tunnel.imageUrl} alt={tunnel.name}/> : <div dangerouslySetInnerHTML={{__html:this.getTempTunnelImage()} } />;
             return (
-                <Card className={'cardContainer'} onClick={() => this._onSearch(tunnel.name)} >
-                    <CardMedia>{image}</CardMedia>
+                <Card className={'cardContainer'} onClick={() => this._onSearch(tunnel.name, tunnel)} >
+                    <div className="cardMedia">{image}</div>
                     <CardContent>
                         <Typography gutterBottom variant="headline" component="h2" >{tunnel.name}</Typography>
                     </CardContent>
@@ -63,8 +59,8 @@ export default class SearchResult extends React.Component<ISearchResultProps, IS
         );
     }
 
-    private _onSearch(newSearch: string) {
-        this.props.updateSearchFunction(newSearch);
+    private _onSearch(newSearch: string, newTunnel: ITunnel) {
+        this.props.updateSearchFunction(newSearch, newTunnel);
     }
 
     private _onChangePage = (selectedItem) => {

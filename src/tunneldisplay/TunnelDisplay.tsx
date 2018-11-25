@@ -32,7 +32,7 @@ export default class TunnelDisplay extends React.Component<ITunnelDisplayProps, 
                 <table className='tunnelDisplayTable'>
                     <tbody>
                         <tr><td className='tunnelInfoLabel'>Lengde</td><td className='tunnelInfo'>{`${tunnel.length}m`}</td></tr>
-                        <tr><td className='tunnelInfoLabel'>Går i</td><td className='tunnelInfo'>{tunnel.type}</td></tr>
+                        <tr><td className='tunnelInfoLabel'>Går i</td><td className='tunnelInfo'>{tunnel.type.replace('Berg', 'Fjell')}</td></tr>
                         <tr><td className='tunnelInfoLabel'>Åpningsår</td><td className='tunnelInfo'>{tunnel.openingYear}</td></tr>
                     </tbody>
                 </table>

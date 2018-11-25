@@ -35941,6 +35941,28 @@ var _default = (0, _createSvgIcon.default)(_react.default.createElement(_react.d
 })), 'Search');
 
 exports.default = _default;
+},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","react":"node_modules\\react\\index.js","./utils/createSvgIcon":"node_modules\\@material-ui\\icons\\utils\\createSvgIcon.js"}],"node_modules\\@material-ui\\icons\\Close.js":[function(require,module,exports) {
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement(_react.default.Fragment, null, _react.default.createElement("path", {
+  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+}), _react.default.createElement("path", {
+  fill: "none",
+  d: "M0 0h24v24H0z"
+})), 'Close');
+
+exports.default = _default;
 },{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","react":"node_modules\\react\\index.js","./utils/createSvgIcon":"node_modules\\@material-ui\\icons\\utils\\createSvgIcon.js"}],"..\\..\\Users\\taral\\AppData\\Roaming\\npm\\node_modules\\parcel\\src\\builtins\\bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
@@ -36045,13 +36067,15 @@ var React = __importStar(require("react"));
 var TextField_1 = __importDefault(require("@material-ui/core/TextField"));
 var InputAdornment_1 = __importDefault(require("@material-ui/core/InputAdornment"));
 var Search_1 = __importDefault(require("@material-ui/icons/Search"));
+var Close_1 = __importDefault(require("@material-ui/icons/Close"));
 require("./searchbar.scss");
 var SearchBar = function (_super) {
     __extends(SearchBar, _super);
     function SearchBar(props) {
         var _this = _super.call(this, props) || this;
-        _this.onSearch = function (e) {
-            _this.props.onSearch(e.target.value);
+        _this.onSearch = function (e, newVal) {
+            var _newVal = newVal !== undefined ? newVal : e.target.value;
+            _this.props.onSearch(_newVal);
         };
         _this.state = {
             suggestions: props.tunnelNames
@@ -36065,14 +36089,21 @@ var SearchBar = function (_super) {
         }
         return React.createElement("div", { className: 'searchContainer' }, React.createElement(TextField_1.default, { id: "searchBar", value: this.props.currentSearch, className: 'searchContainer', onChange: function onChange(e) {
                 return _this.onSearch(e);
+            }, inputProps: {
+                className: 'input'
             }, InputProps: {
-                startAdornment: React.createElement(InputAdornment_1.default, { position: "start" }, React.createElement(Search_1.default, { className: "searchIcon" }))
+                placeholder: "Skriv inn tunell her",
+                disableUnderline: true,
+                startAdornment: React.createElement(InputAdornment_1.default, { position: "start" }, React.createElement(Search_1.default, { className: "searchIcon" })),
+                endAdornment: React.createElement(InputAdornment_1.default, { position: "end" }, React.createElement(Close_1.default, { className: 'removeTextIcon', onClick: function onClick(e) {
+                        return _this.onSearch(e, "");
+                    } }))
             } }));
     };
     return SearchBar;
 }(React.Component);
 exports.default = SearchBar;
-},{"react":"node_modules\\react\\index.js","@material-ui/core/TextField":"node_modules\\@material-ui\\core\\TextField\\index.js","@material-ui/core/InputAdornment":"node_modules\\@material-ui\\core\\InputAdornment\\index.js","@material-ui/icons/Search":"node_modules\\@material-ui\\icons\\Search.js","./searchbar.scss":"src\\searchbar\\searchbar.scss"}],"node_modules\\@material-ui\\core\\Card\\Card.js":[function(require,module,exports) {
+},{"react":"node_modules\\react\\index.js","@material-ui/core/TextField":"node_modules\\@material-ui\\core\\TextField\\index.js","@material-ui/core/InputAdornment":"node_modules\\@material-ui\\core\\InputAdornment\\index.js","@material-ui/icons/Search":"node_modules\\@material-ui\\icons\\Search.js","@material-ui/icons/Close":"node_modules\\@material-ui\\icons\\Close.js","./searchbar.scss":"src\\searchbar\\searchbar.scss"}],"node_modules\\@material-ui\\core\\Card\\Card.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
@@ -36158,134 +36189,7 @@ Object.defineProperty(exports, "default", {
 });
 
 var _Card = _interopRequireDefault(require("./Card"));
-},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","./Card":"node_modules\\@material-ui\\core\\Card\\Card.js"}],"node_modules\\@material-ui\\core\\CardMedia\\CardMedia.js":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.styles = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/builtin/extends"));
-
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/builtin/defineProperty"));
-
-var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/builtin/objectSpread"));
-
-var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/builtin/objectWithoutProperties"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _warning = _interopRequireDefault(require("warning"));
-
-var _withStyles = _interopRequireDefault(require("../styles/withStyles"));
-
-var styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center'
-  },
-
-  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
-  media: {
-    width: '100%'
-  }
-};
-exports.styles = styles;
-var MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
-
-function CardMedia(props) {
-  var classes = props.classes,
-      className = props.className,
-      Component = props.component,
-      image = props.image,
-      src = props.src,
-      style = props.style,
-      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component", "image", "src", "style"]);
-  "development" !== "production" ? (0, _warning.default)(Boolean(image || src), 'Material-UI: either `image` or `src` property must be specified.') : void 0;
-  var isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
-  var composedStyle = !isMediaComponent && image ? (0, _objectSpread2.default)({
-    backgroundImage: "url(\"".concat(image, "\")")
-  }, style) : style;
-  return _react.default.createElement(Component, (0, _extends2.default)({
-    className: (0, _classnames.default)(classes.root, (0, _defineProperty2.default)({}, classes.media, isMediaComponent), className),
-    style: composedStyle,
-    src: isMediaComponent ? image || src : undefined
-  }, other));
-}
-
-CardMedia.propTypes = "development" !== "production" ? {
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css-api) below for more details.
-   */
-  classes: _propTypes.default.object.isRequired,
-
-  /**
-   * @ignore
-   */
-  className: _propTypes.default.string,
-
-  /**
-   * Component for rendering image.
-   * Either a string to use a DOM element or a component.
-   */
-  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func, _propTypes.default.object]),
-
-  /**
-   * Image to be displayed as a background image.
-   * Either `image` or `src` prop must be specified.
-   * Note that caller must specify height otherwise the image will not be visible.
-   */
-  image: _propTypes.default.string,
-
-  /**
-   * An alias for `image` property.
-   * Available only with media components.
-   * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
-   */
-  src: _propTypes.default.string,
-
-  /**
-   * @ignore
-   */
-  style: _propTypes.default.object
-} : {};
-CardMedia.defaultProps = {
-  component: 'div'
-};
-
-var _default = (0, _withStyles.default)(styles, {
-  name: 'MuiCardMedia'
-})(CardMedia);
-
-exports.default = _default;
-},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","@babel/runtime/helpers/builtin/extends":"node_modules\\@babel\\runtime\\helpers\\builtin\\extends.js","@babel/runtime/helpers/builtin/defineProperty":"node_modules\\@babel\\runtime\\helpers\\builtin\\defineProperty.js","@babel/runtime/helpers/builtin/objectSpread":"node_modules\\@babel\\runtime\\helpers\\builtin\\objectSpread.js","@babel/runtime/helpers/builtin/objectWithoutProperties":"node_modules\\@babel\\runtime\\helpers\\builtin\\objectWithoutProperties.js","react":"node_modules\\react\\index.js","prop-types":"node_modules\\prop-types\\index.js","classnames":"node_modules\\classnames\\index.js","warning":"node_modules\\@material-ui\\core\\node_modules\\warning\\warning.js","../styles/withStyles":"node_modules\\@material-ui\\core\\styles\\withStyles.js"}],"node_modules\\@material-ui\\core\\CardMedia\\index.js":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function get() {
-    return _CardMedia.default;
-  }
-});
-
-var _CardMedia = _interopRequireDefault(require("./CardMedia"));
-},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","./CardMedia":"node_modules\\@material-ui\\core\\CardMedia\\CardMedia.js"}],"node_modules\\@material-ui\\core\\CardContent\\CardContent.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","./Card":"node_modules\\@material-ui\\core\\Card\\Card.js"}],"node_modules\\@material-ui\\core\\CardContent\\CardContent.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
@@ -36844,7 +36748,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 var Card_1 = __importDefault(require("@material-ui/core/Card"));
-var CardMedia_1 = __importDefault(require("@material-ui/core/CardMedia"));
 var CardContent_1 = __importDefault(require("@material-ui/core/CardContent"));
 var Typography_1 = __importDefault(require("@material-ui/core/Typography"));
 var react_paginate_1 = __importDefault(require("react-paginate"));
@@ -36860,24 +36763,24 @@ var SearchResult = function (_super) {
             });
         };
         _this.state = {
-            currentPage: 1
+            currentPage: 0
         };
         return _this;
     }
     SearchResult.prototype.render = function () {
         var _this = this;
-        var startIndex = (this.state.currentPage - 1) * 9;
-        var endIndex = this.state.currentPage * 9;
+        var startIndex = this.state.currentPage * 9;
+        var endIndex = (this.state.currentPage + 1) * 9;
         var cards = this.props.items.slice(startIndex, endIndex).map(function (tunnel, idx) {
             var image = _this.imageExists(tunnel.name) ? React.createElement("img", { src: tunnel.imageUrl, alt: tunnel.name }) : React.createElement("div", { dangerouslySetInnerHTML: { __html: _this.getTempTunnelImage() } });
             return React.createElement(Card_1.default, { className: 'cardContainer', onClick: function onClick() {
-                    return _this._onSearch(tunnel.name);
-                } }, React.createElement(CardMedia_1.default, null, image), React.createElement(CardContent_1.default, null, React.createElement(Typography_1.default, { gutterBottom: true, variant: "headline", component: "h2" }, tunnel.name)));
+                    return _this._onSearch(tunnel.name, tunnel);
+                } }, React.createElement("div", { className: "cardMedia" }, image), React.createElement(CardContent_1.default, null, React.createElement(Typography_1.default, { gutterBottom: true, variant: "headline", component: "h2" }, tunnel.name)));
         });
         return React.createElement("div", { className: 'searchResultContainer' }, React.createElement("div", { className: "searchResults" }, cards), React.createElement(react_paginate_1.default, { nextLabel: "Neste side", previousLabel: "Forrige side", breakLabel: "...", breakClassName: "break-me", pageCount: this.props.items.length / 9, marginPagesDisplayed: 2, pageRangeDisplayed: 5, onPageChange: this._onChangePage, containerClassName: 'pagination' }));
     };
-    SearchResult.prototype._onSearch = function (newSearch) {
-        this.props.updateSearchFunction(newSearch);
+    SearchResult.prototype._onSearch = function (newSearch, newTunnel) {
+        this.props.updateSearchFunction(newSearch, newTunnel);
     };
     SearchResult.prototype.imageExists = function (tunnelName) {
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
@@ -36888,34 +36791,12 @@ var SearchResult = function (_super) {
     return SearchResult;
 }(React.Component);
 exports.default = SearchResult;
-},{"react":"node_modules\\react\\index.js","@material-ui/core/Card":"node_modules\\@material-ui\\core\\Card\\index.js","@material-ui/core/CardMedia":"node_modules\\@material-ui\\core\\CardMedia\\index.js","@material-ui/core/CardContent":"node_modules\\@material-ui\\core\\CardContent\\index.js","@material-ui/core/Typography":"node_modules\\@material-ui\\core\\Typography\\index.js","react-paginate":"node_modules\\react-paginate\\dist\\index.js","./searchresult.scss":"src\\searchresult\\searchresult.scss"}],"src\\tunneldisplay\\tunneldisplay.scss":[function(require,module,exports) {
+},{"react":"node_modules\\react\\index.js","@material-ui/core/Card":"node_modules\\@material-ui\\core\\Card\\index.js","@material-ui/core/CardContent":"node_modules\\@material-ui\\core\\CardContent\\index.js","@material-ui/core/Typography":"node_modules\\@material-ui\\core\\Typography\\index.js","react-paginate":"node_modules\\react-paginate\\dist\\index.js","./searchresult.scss":"src\\searchresult\\searchresult.scss"}],"src\\tunneldisplay\\tunneldisplay.scss":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"..\\..\\Users\\taral\\AppData\\Roaming\\npm\\node_modules\\parcel\\src\\builtins\\css-loader.js"}],"node_modules\\@material-ui\\icons\\Close.js":[function(require,module,exports) {
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
-var _default = (0, _createSvgIcon.default)(_react.default.createElement(_react.default.Fragment, null, _react.default.createElement("path", {
-  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-}), _react.default.createElement("path", {
-  fill: "none",
-  d: "M0 0h24v24H0z"
-})), 'Close');
-
-exports.default = _default;
-},{"@babel/runtime/helpers/builtin/interopRequireDefault":"node_modules\\@babel\\runtime\\helpers\\builtin\\interopRequireDefault.js","react":"node_modules\\react\\index.js","./utils/createSvgIcon":"node_modules\\@material-ui\\icons\\utils\\createSvgIcon.js"}],"node_modules\\@material-ui\\icons\\ArrowBack.js":[function(require,module,exports) {
+},{"_css_loader":"..\\..\\Users\\taral\\AppData\\Roaming\\npm\\node_modules\\parcel\\src\\builtins\\css-loader.js"}],"node_modules\\@material-ui\\icons\\ArrowBack.js":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/builtin/interopRequireDefault");
@@ -36983,7 +36864,7 @@ var TunnelDisplay = function (_super) {
     TunnelDisplay.prototype.render = function () {
         var tunnel = this.props.tunnel;
         var image = this.imageExists(tunnel.name) ? React.createElement("img", { src: tunnel.imageUrl, alt: tunnel.name }) : React.createElement("div", { dangerouslySetInnerHTML: { __html: this.getTempTunnel() } });
-        return React.createElement("div", { className: 'tunnelDisplay' }, React.createElement("div", { className: "navButtonRow" }, React.createElement("a", { className: "backButton", onClick: this.props.onBackButtonClicked }, React.createElement(ArrowBack_1.default, { className: "arrowBack" }), React.createElement("span", null, "Tilbake")), React.createElement("a", { className: "closeButton", onClick: this.props.onCloseButtonClicked }, React.createElement(Close_1.default, { className: "close" }), React.createElement("span", null, "Lukk"))), React.createElement("h1", null, tunnel.name), image, React.createElement("table", { className: 'tunnelDisplayTable' }, React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "Lengde"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.length + "m")), React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "G\xE5r i"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.type)), React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "\xC5pnings\xE5r"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.openingYear)))));
+        return React.createElement("div", { className: 'tunnelDisplay' }, React.createElement("div", { className: "navButtonRow" }, React.createElement("a", { className: "backButton", onClick: this.props.onBackButtonClicked }, React.createElement(ArrowBack_1.default, { className: "arrowBack" }), React.createElement("span", null, "Tilbake")), React.createElement("a", { className: "closeButton", onClick: this.props.onCloseButtonClicked }, React.createElement(Close_1.default, { className: "close" }), React.createElement("span", null, "Lukk"))), React.createElement("h1", null, tunnel.name), image, React.createElement("table", { className: 'tunnelDisplayTable' }, React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "Lengde"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.length + "m")), React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "G\xE5r i"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.type.replace('Berg', 'Fjell'))), React.createElement("tr", null, React.createElement("td", { className: 'tunnelInfoLabel' }, "\xC5pnings\xE5r"), React.createElement("td", { className: 'tunnelInfo' }, tunnel.openingYear)))));
     };
     TunnelDisplay.prototype.imageExists = function (tunnelName) {
         return this.props.tunnelsWithImages.indexOf(tunnelName.toLocaleLowerCase()) > -1;
@@ -37084,20 +36965,25 @@ var App = function (_super) {
         if (currentTunnelSearch.length === 1) {
             resultPane = React.createElement(TunnelDisplay_1.default, { tunnel: currentTunnelSearch[0], tunnelsWithImages: this.state.tunnelsWithImage, onBackButtonClicked: this.backButtonClicked, onCloseButtonClicked: this.closeView });
         } else {
-            resultPane = this.state && this.state.currentSearch ? React.createElement(SearchResult_1.default, { items: currentTunnelSearch, tunnelsWithImages: this.state.tunnelsWithImage, updateSearchFunction: function updateSearchFunction(newSearchVal) {
-                    return _this.handleSearch(newSearchVal);
+            resultPane = this.state && this.state.currentSearch ? React.createElement(SearchResult_1.default, { items: currentTunnelSearch, tunnelsWithImages: this.state.tunnelsWithImage, updateSearchFunction: function updateSearchFunction(newSearchVal, newTunnel) {
+                    return _this.handleSearch(newSearchVal, newTunnel);
                 } }) : React.createElement("div", null);
         }
-        return React.createElement("div", { className: "appContainer" }, React.createElement("div", { className: 'banner' }, React.createElement("h1", null, "Tuneller"), React.createElement(SearchBar_1.default, { tunnelNames: this.state.allTunnels.map(function (tunnel) {
+        return React.createElement("div", { className: "appContainer" }, React.createElement("div", { className: 'banner' }, React.createElement("h1", null, "Tunneler"), React.createElement(SearchBar_1.default, { tunnelNames: this.state.allTunnels.map(function (tunnel) {
                 return { label: tunnel.name };
             }), onSearch: function onSearch(newSearchVal) {
                 return _this.handleSearch(newSearchVal);
             }, currentSearch: this.state.currentSearchString })), resultPane);
     };
-    App.prototype.handleSearch = function (newSearchVal) {
-        var newSearchResults = this.state.allTunnels.filter(function (tunnel) {
-            return tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1;
-        });
+    App.prototype.handleSearch = function (newSearchVal, newTunnel) {
+        var newSearchResults;
+        if (newTunnel) {
+            newSearchResults = [newTunnel];
+        } else {
+            newSearchResults = this.state.allTunnels.filter(function (tunnel) {
+                return tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1;
+            });
+        }
         this.setState({
             currentSearch: newSearchResults,
             currentSearchString: newSearchVal,
@@ -37156,7 +37042,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61346' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57105' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

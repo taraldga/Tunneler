@@ -58,13 +58,13 @@ class App extends React.Component<{}, IAppState> {
                 <SearchResult 
                     items={currentTunnelSearch}
                     tunnelsWithImages={this.state.tunnelsWithImage}
-                    updateSearchFunction={(newSearchVal) => this.handleSearch(newSearchVal)}/> :   
+                    updateSearchFunction={(newSearchVal, newTunnel:ITunnel) => this.handleSearch(newSearchVal,newTunnel)}/> :   
             <div/>;
         }
         return (
             <div className="appContainer">
                 <div className='banner'>
-                    <h1>Tuneller</h1>
+                    <h1>Tunneler</h1>
                     <SearchBar tunnelNames={this.state.allTunnels.map(tunnel => {return { label: tunnel.name} }) }       
                             onSearch={(newSearchVal) => this.handleSearch(newSearchVal)}
                             currentSearch={this.state.currentSearchString}/>
@@ -74,8 +74,13 @@ class App extends React.Component<{}, IAppState> {
         );
     }
 
-    public handleSearch(newSearchVal: string) {
-        let newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );
+    public handleSearch(newSearchVal: string, newTunnel?: ITunnel) {
+        let newSearchResults 
+        if(newTunnel) {
+            newSearchResults = [newTunnel]
+        } else {
+         newSearchResults = this.state.allTunnels.filter( tunnel => tunnel.name.toLocaleLowerCase().indexOf(newSearchVal.toLocaleLowerCase()) !== -1 );
+        }
         this.setState({
             currentSearch: newSearchResults,
             currentSearchString: newSearchVal,

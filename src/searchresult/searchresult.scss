@@ -8,16 +8,27 @@
         
         .cardContainer {
             margin: 10px 5px;
-            width: 240px;
             min-width: 240px;
+            max-width: 240px;
+            min-height: 250px;
+            max-height: 250px;
             &:hover {
                 box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
                 cursor: pointer;
             }
-            img {
-                height: 150px;
-                width: 240px;
-            }  
+            .cardMedia {
+                display: block;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                img {
+                    height: 150px;
+                    width: 240px;
+                }  
+            }
+            h2 {
+                font-size: 1.2em;
+            }
         }
     }
     .pagination {
@@ -26,16 +37,37 @@
         list-style: none;
         border-radius: .25rem;
         justify-content: center;
+        .selected {
+            a {
+                font-weight: 600;
+                color: #fff;
+                background-color: #004e92;
+            }
+        }
         a {
             position: relative;
             display: block;
             padding: .5rem .75rem;
             margin-left: -1px;
             line-height: 1.25;
-            color: #007bff;
+            color: #004e92;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .break-me {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #004e92;
             background-color: #fff;
             border: 1px solid #dee2e6;
         }
+
     }
 }
 .searchResultContainer .cardContainer {
@@ -48,7 +80,7 @@
 $animationDelay: 0.5;
 @for $i from 1 through 15 {
 	.searchResultContainer div:nth-of-type(#{$i}) {
-		animation-delay: #{0.3+($i)/30}s;
+		animation-delay: #{0.3+($i)/60}s;
   }
 }
 

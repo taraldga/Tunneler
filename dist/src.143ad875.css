@@ -1,13 +1,18 @@
 .banner {
-  height: 300px;
-  background-image: linear-gradient(to bottom right, #0198E1, #82CFFD);
+  height: 200px;
+  background-image: linear-gradient(to bottom right, #000428, #004e92);
   color: white; }
   .banner > h1 {
     color: white;
-    padding-top: 50px; }
+    padding-top: 50px;
+    margin-top: 0; }
 
 .searchIcon {
   color: #fff; }
+
+.removeTextIcon {
+  color: #fff;
+  border: none; }
 
 .searchContainer {
   width: 400px;
@@ -15,12 +20,15 @@
   display: block;
   margin-left: auto;
   margin-right: auto; }
-  .searchContainer div:last-child {
+  .searchContainer > div {
     border: solid 1px #fff;
     border-radius: 3px; }
   .searchContainer input {
     width: 350px;
     color: #fff; }
+    .searchContainer input::after {
+      content: none;
+      display: none; }
 .searchResultContainer .searchResults {
   display: flex;
   flex-wrap: wrap;
@@ -29,14 +37,23 @@
   max-width: 800px; }
   .searchResultContainer .searchResults .cardContainer {
     margin: 10px 5px;
-    width: 240px;
-    min-width: 240px; }
+    min-width: 240px;
+    max-width: 240px;
+    min-height: 250px;
+    max-height: 250px; }
     .searchResultContainer .searchResults .cardContainer:hover {
       box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
       cursor: pointer; }
-    .searchResultContainer .searchResults .cardContainer img {
-      height: 150px;
-      width: 240px; }
+    .searchResultContainer .searchResults .cardContainer .cardMedia {
+      display: block;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center; }
+      .searchResultContainer .searchResults .cardContainer .cardMedia img {
+        height: 150px;
+        width: 240px; }
+    .searchResultContainer .searchResults .cardContainer h2 {
+      font-size: 1.2em; }
 
 .searchResultContainer .pagination {
   display: flex;
@@ -44,13 +61,28 @@
   list-style: none;
   border-radius: .25rem;
   justify-content: center; }
+  .searchResultContainer .pagination .selected a {
+    font-weight: 600;
+    color: #fff;
+    background-color: #004e92; }
   .searchResultContainer .pagination a {
     position: relative;
     display: block;
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
+    color: #004e92;
+    background-color: #fff;
+    border: 1px solid #dee2e6; }
+    .searchResultContainer .pagination a:hover {
+      cursor: pointer; }
+  .searchResultContainer .pagination .break-me {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #004e92;
     background-color: #fff;
     border: 1px solid #dee2e6; }
 
@@ -60,49 +92,49 @@
   animation-duration: .7s; }
 
 .searchResultContainer div:nth-of-type(1) {
-  animation-delay: 0.33333s; }
+  animation-delay: 0.31667s; }
 
 .searchResultContainer div:nth-of-type(2) {
-  animation-delay: 0.36667s; }
+  animation-delay: 0.33333s; }
 
 .searchResultContainer div:nth-of-type(3) {
-  animation-delay: 0.4s; }
+  animation-delay: 0.35s; }
 
 .searchResultContainer div:nth-of-type(4) {
-  animation-delay: 0.43333s; }
+  animation-delay: 0.36667s; }
 
 .searchResultContainer div:nth-of-type(5) {
-  animation-delay: 0.46667s; }
+  animation-delay: 0.38333s; }
 
 .searchResultContainer div:nth-of-type(6) {
-  animation-delay: 0.5s; }
+  animation-delay: 0.4s; }
 
 .searchResultContainer div:nth-of-type(7) {
-  animation-delay: 0.53333s; }
+  animation-delay: 0.41667s; }
 
 .searchResultContainer div:nth-of-type(8) {
-  animation-delay: 0.56667s; }
+  animation-delay: 0.43333s; }
 
 .searchResultContainer div:nth-of-type(9) {
-  animation-delay: 0.6s; }
+  animation-delay: 0.45s; }
 
 .searchResultContainer div:nth-of-type(10) {
-  animation-delay: 0.63333s; }
+  animation-delay: 0.46667s; }
 
 .searchResultContainer div:nth-of-type(11) {
-  animation-delay: 0.66667s; }
+  animation-delay: 0.48333s; }
 
 .searchResultContainer div:nth-of-type(12) {
-  animation-delay: 0.7s; }
+  animation-delay: 0.5s; }
 
 .searchResultContainer div:nth-of-type(13) {
-  animation-delay: 0.73333s; }
+  animation-delay: 0.51667s; }
 
 .searchResultContainer div:nth-of-type(14) {
-  animation-delay: 0.76667s; }
+  animation-delay: 0.53333s; }
 
 .searchResultContainer div:nth-of-type(15) {
-  animation-delay: 0.8s; }
+  animation-delay: 0.55s; }
 
 @keyframes fade-in {
   0% {
