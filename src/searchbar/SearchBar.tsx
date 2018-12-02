@@ -40,7 +40,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
                         className: 'input'
                     }}
                     InputProps={{
-                        placeholder:"Skriv inn tunell her",
+                        placeholder:"Skriv inn tunnel her",
                         disableUnderline: true,
                         startAdornment: (
                             <InputAdornment position="start">

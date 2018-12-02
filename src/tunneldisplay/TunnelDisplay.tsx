@@ -57,5 +57,5 @@ export default class TunnelDisplay extends React.Component<ITunnelDisplayProps, 
                     </g>
                 </svg>`
         )
-        }
+    }
 }
